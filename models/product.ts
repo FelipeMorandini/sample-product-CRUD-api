@@ -13,6 +13,12 @@ export const insertProduct = async (product: Product) => {
     return `Product successfully inserted as ID no. ${id[0].Id as number | undefined}`;
 };
 
+const listProducts = async () => {
+    const answer = await dbQuery(`SELECT * FROM product`);
+    return answer as Product[];
+}
+
 export const productModel = {
-    insertProduct
+    insertProduct,
+    listProducts
 }

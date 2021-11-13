@@ -24,6 +24,14 @@ const insertProduct = (req: Request, res: Response) => {
     }).catch(err => internalServerError(res, err))
 }
 
+const ListProducts = (req: Request, res: Response) => {
+    productModel.listProducts()
+    .then(products => {
+        res.json(products)
+    }).catch(err => internalServerError(res, err));
+}
+
 export const productController = {
-    insertProduct
+    insertProduct,
+    ListProducts
 }
