@@ -1,4 +1,4 @@
-import { dbQuery } from "../services/loadDbFile";
+import { dbQuery, dbQueryFirst } from "../services/loadDbFile";
 
 
 export type Product = {
@@ -18,7 +18,13 @@ const listProducts = async () => {
     return answer as Product[];
 }
 
+const getProduct = async (id: number) => {
+    const answer = await dbQueryFirst(`SELECT * FROM product WHERE id = ?`, [id]);
+    return answer as Product | undefined;
+}
+
 export const productModel = {
     insertProduct,
-    listProducts
+    listProducts,
+    getProduct
 }

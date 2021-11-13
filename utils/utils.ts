@@ -1,0 +1,1 @@
+export const validateNumber = (num: any) => parseFloat(num) > 0;
