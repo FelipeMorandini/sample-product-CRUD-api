@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import { Product, productModel } from '../models/product';
 import { badRequest, internalServerError, notFound } from '../utils/errors';
-import { validateNumber } from '../utils/utils';
+import { validateNumber, ok } from '../utils/utils';
 
 const insertProduct = (req: Request, res: Response) => {
     
@@ -50,8 +50,21 @@ const getProduct = (req: Request, res: Response) => {
     }
 }
 
+const deleteProduct = (req: Request, res: Response) => {
+    {
+        const id = parseInt(req.params.id);
+        if(!validateNumber(id)) {
+            return badRequest(res, 'Invalid ID.');
+        }
+
+        productModel.deleteProduct(id)
+            .then(() => ok(res)).catch(err => internalServerError(res, err));
+    }
+}
+
 export const productController = {
     insertProduct,
     ListProducts,
-    getProduct
+    getProduct,
+    deleteProduct
 }

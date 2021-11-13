@@ -23,8 +23,13 @@ const getProduct = async (id: number) => {
     return answer as Product | undefined;
 }
 
+const deleteProduct = async (id: number) => {
+    await dbQueryFirst(`DELETE FROM product WHERE id = ?`, [id]);
+}
+
 export const productModel = {
     insertProduct,
     listProducts,
-    getProduct
+    getProduct,
+    deleteProduct
 }
