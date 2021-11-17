@@ -13,6 +13,11 @@ export const insertProduct = async (product: Product) => {
     return `Product successfully inserted as ID no. ${id[0].Id as number | undefined}`;
 };
 
+export const updateProduct = async (product: Product) => {
+    await dbQuery(`UPDATE product SET name = ?, price = ? WHERE id = ?`, [product.name, product.price, product.id])
+    return getProduct(product.id);
+};
+
 const listProducts = async () => {
     const answer = await dbQuery(`SELECT * FROM product`);
     return answer as Product[];
@@ -31,5 +36,6 @@ export const productModel = {
     insertProduct,
     listProducts,
     getProduct,
-    deleteProduct
+    deleteProduct,
+    updateProduct
 }
