@@ -1,7 +1,7 @@
 {
-  "name": "sample-product-crud-api",
+  "name": "test-api",
   "version": "1.0.0",
-  "description": "Sample API for future implementations in product management",
+  "description": "test api",
   "main": "src/server.ts",
   "scripts": {
     "build": "tsc",
